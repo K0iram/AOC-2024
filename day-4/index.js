@@ -8,11 +8,11 @@ const findAllXMAS = (data) => {
   const reverseTarget = "SAMX";
   let count = 0;
 
-  const checkDirection = (row, col, rowInc, colInc) => {
+  const checkDirection = (row, col, rowStep, colStep) => {
     let str = '';
     for (let i = 0; i < target.length; i++) {
-      const newRow = row + i * rowInc;
-      const newCol = col + i * colInc;
+      const newRow = row + i * rowStep;
+      const newCol = col + i * colStep;
       if (newRow >= 0 && newRow < numRows && newCol >= 0 && newCol < numCols) {
         str += rows[newRow][newCol];
       } else {
@@ -26,10 +26,10 @@ const findAllXMAS = (data) => {
 
   for (let row = 0; row < numRows; row++) {
     for (let col = 0; col < numCols; col++) {
-      checkDirection(row, col, 0, 1);   // Horizontal right
-      checkDirection(row, col, 1, 0);   // Vertical down
-      checkDirection(row, col, 1, 1);   // Diagonal down-right
-      checkDirection(row, col, 1, -1);  // Diagonal down-left
+      checkDirection(row, col, 0, 1);   // Horizontal
+      checkDirection(row, col, 1, 0);   // Vertical
+      checkDirection(row, col, 1, 1);   // Diagonal right
+      checkDirection(row, col, 1, -1);  // Diagonal left
     }
   }
 
@@ -70,4 +70,4 @@ const findAllXMASPatterns = (data) => {
   return count;
 };
 
-console.log(`Total X-MAS patterns found: ${findAllXMASPatterns(data)}`);
+console.log(findAllXMASPatterns(data));
